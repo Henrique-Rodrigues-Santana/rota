@@ -15,6 +15,12 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
+      // nomeando rotas
+      routes: {
+        "home": (context) => Screen1(),
+        "caixa": (context) => Screen2(),
+        "saque": (context) => Screen3(),
+      },
       home: MyHomePage(),
     );
   }
@@ -99,7 +105,8 @@ class _Screen1State extends State<Screen1> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
-          Navigator.pop(context,"tela dois ");
+          // rota nomeada
+          Navigator.pushNamed(context, "saque");
         },
         tooltip: 'Increment',
         child: Icon(Icons.add),
@@ -129,7 +136,7 @@ class _Screen2State extends State<Screen2> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Tela principal"),
+        title: Text("Tela 2"),
       ),
       body: Center(
 
@@ -177,7 +184,7 @@ class _Screen3State extends State<Screen3> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Tela principal"),
+        title: Text("Tela 3"),
       ),
       body: Center(
 
