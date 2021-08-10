@@ -30,21 +30,17 @@ class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key}) : super(key: key);
 
 
-
-
-
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  String teto = "vai reveber uma frase" ;
+  String teto = "vai reveber uma frase";
 
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: Text("Tela principal"),
@@ -63,11 +59,12 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           // navegação simples de uma pagina a outra
-          String valor = await Navigator.push(context, MaterialPageRoute(builder: (context) => Screen1()));
+          String valor = await Navigator.push(
+              context, MaterialPageRoute(builder: (context) => Screen1()));
           setState(() {
             teto = valor;
           });
-          },
+        },
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ),
@@ -104,7 +101,7 @@ class _Screen1State extends State<Screen1> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
+        onPressed: () {
           // rota nomeada
           Navigator.pushNamed(context, "saque");
         },
@@ -127,7 +124,6 @@ class _Screen2State extends State<Screen2> {
 
   void _incrementCounter() {
     setState(() {
-
       _counter++;
     });
   }
@@ -149,7 +145,10 @@ class _Screen2State extends State<Screen2> {
             ),
             Text(
               '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .headline4,
             ),
           ],
         ),
@@ -175,7 +174,6 @@ class _Screen3State extends State<Screen3> {
 
   void _incrementCounter() {
     setState(() {
-
       _counter++;
     });
   }
@@ -195,21 +193,81 @@ class _Screen3State extends State<Screen3> {
             Text(
               'You have pushed the button this many times:',
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: (){
+          Navigator.push(context, CupertinoPageRoute(builder: (context) => Screen4()));
+        },
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ),
     );
   }
 }
+
+class Screen4 extends StatefulWidget {
+  const Screen4({Key? key}) : super(key: key);
+
+  @override
+  _Screen4State createState() => _Screen4State();
+}
+
+class _Screen4State extends State<Screen4> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+        title: Text("Tela 3"),
+    ),
+    body: Center(
+
+    child: Column(
+
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: <Widget>[
+    Text(
+    'You have pushed the button this many times:',
+    ),
+    Text(
+    'Texto teste',
+    style: Theme.of(context).textTheme.headline4,
+    ),
+    ],
+    ),
+    ),
+    floatingActionButton: FloatingActionButton(
+    onPressed: (){
+
+      // fecha tudo e abre a pagina 2 => home
+    Navigator.pushAndRemoveUntil(
+        context,
+        CupertinoPageRoute(builder: (context) => Screen2()),
+        ModalRoute.withName('home')
+      );
+      // para matar todas as telas anteriores na pilha de delas
+      // basta substituir o argumento "ModalRoute.withName('home')" por uma função
+      // (route) => false
+      // ai ele vai finalizar todas as telas abertas até agora e abrir a selecionada
+      // retirando da tela aberto a opção de voltar a tela anterior
+
+      
+
+    },
+    tooltip: 'Increment',
+    child: Icon(
+    Icons
+    .
+    add
+    )
+    ,
+    ));
+
+  }
+}
+
 
 
 
